@@ -76,7 +76,7 @@ const About = () => {
                 />
                 {/* Overlay Badge */}
                 <div className="absolute bottom-6 left-6 bg-[#fbab39] text-white p-6 rounded-lg">
-                  <div className="text-5xl font-bold font-['Teko']">25+</div>
+                  <div className="text-5xl font-bold font-['Teko']">3+</div>
                   <div className="text-sm uppercase tracking-wider">Années d'expérience</div>
                 </div>
               </div>

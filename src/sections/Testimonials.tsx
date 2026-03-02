@@ -58,7 +58,7 @@ const Testimonials = () => {
       name: 'Bilal Alla',
       role: 'Architecte',
       company: 'Cabinet Alla',
-      image: "./images/rassy.jpeg",
+      image: "./images/bilal.jpg",
       content: 'Hormexpres a dépassé toutes nos attentes. Notre projet a été livré dans les délais avec une qualité exceptionnelle. L\'équipe est professionnelle, réactive et très compétente.',
       rating: 5,
     },
