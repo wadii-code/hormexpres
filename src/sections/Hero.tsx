@@ -33,7 +33,7 @@ const Hero = () => {
       isLoaded ? 'scale-100' : 'scale-110'
     }`}
   >
-    <source src="videos/vid-home-page2.mp4" type="video/mp4" />
+    <source src="videos/vid3.mp4" type="video/mp4" />
     
   </video>
   {/* Dark Overlay */}

@@ -7,6 +7,7 @@ import Projects from './sections/Projects';
 import Testimonials from './sections/Testimonials';
 import Suppliers from './sections/Suppliers';
 import Contact from './sections/Contact';
+import QuoteForm from './sections/QuoteForm';
 import Footer from './sections/Footer';
 import './App.css';
 
@@ -58,6 +59,7 @@ function App() {
         <Testimonials />
         <Suppliers />
         <Contact />
+        <QuoteForm />
       </main>
       <Footer />
     </div>

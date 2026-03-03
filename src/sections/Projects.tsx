@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, MapPin, Calendar, Expand, X } from 'lucide-react';
+import { ArrowRight, MapPin, Calendar } from 'lucide-react';
 
 const Projects = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [activeFilter, setActiveFilter] = useState('all');
   const [showAll, setShowAll] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,6 +44,7 @@ const Projects = () => {
       location: 'Casablanca',
       year: '2023',
       image: './images/1.jpeg',
+      gallery: ['./images/32.jpeg', './images/33.jpeg', './images/34.jpeg'],
       description: 'Construction d\'un pont à haubans de 500m de long.',
     },
     {
@@ -54,6 +54,7 @@ const Projects = () => {
       location: 'Azilal',
       year: '2022',
       image: './images/2.jpeg',
+      gallery: ['./images/35.jpeg', './images/36.jpeg', './images/37.jpeg'],
       description: 'Construction d\'un barrage en béton de 120m de haut.',
     },
     {
@@ -63,6 +64,7 @@ const Projects = () => {
       location: 'Tanger',
       year: '2023',
       image: './images/3.jpeg',
+      gallery: ['./images/38.jpeg', './images/39.jpeg', './images/40.jpeg'],
       description: 'Conception et montage d\'une charpente métallique pour un hangar de 5000 m².',
     },
     {
@@ -72,6 +74,7 @@ const Projects = () => {
       location: 'Rabat',
       year: '2022',
       image: './images/4.jpeg',
+      gallery: ['./images/41.jpeg', './images/42.jpeg', './images/43.jpeg'],
       description: 'Réalisation d\'une passerelle piétonne métallique de 50m.',
     },
     {
@@ -228,14 +231,6 @@ const Projects = () => {
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#212529] via-[#212529]/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
                 
-                {/* Expand Icon */}
-                <div 
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 cursor-pointer"
-                  onClick={() => setSelectedProject(project)}
-                >
-                  <Expand size={18} className="text-white" />
-                </div>
-
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   {/* Category Badge */}
@@ -281,43 +276,6 @@ const Projects = () => {
             <button onClick={() => setShowAll(true)} className="btn-outline">
               Voir tous nos projets
               <ArrowRight size={18} className="ml-2" />
-            </button>
-          </div>
-        )}
-
-        {/* Lightbox */}
-        {selectedProject && (
-          <div 
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedProject(null)}
-          >
-            <div 
-              className="bg-[#212529] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto flex flex-col md:flex-row"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="md:w-1/2">
-                <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none" />
-              </div>
-              <div className="md:w-1/2 p-8 text-white flex flex-col">
-                <h3 className="text-3xl font-bold text-[#fbab39] mb-4 font-['Teko'] tracking-wide">{selectedProject.title}</h3>
-                <p className="text-gray-300 mb-6 flex-grow">{selectedProject.description}</p>
-                <div className="flex items-center gap-6 text-gray-400 text-sm border-t border-white/10 pt-4">
-                  <span className="flex items-center gap-2">
-                    <MapPin size={16} className="text-[#fbab39]" />
-                    {selectedProject.location}
-                  </span>
-                  <span className="flex items-center gap-2">
-                    <Calendar size={16} className="text-[#fbab39]" />
-                    {selectedProject.year}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <button 
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white"
-            >
-              <X size={24} />
             </button>
           </div>
         )}

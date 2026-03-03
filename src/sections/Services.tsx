@@ -1,10 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
 import { Building2, Hammer, Factory, Paintbrush, Droplets, Layers, Trash2, Wrench, Zap, Sparkles, ArrowRight } from 'lucide-react';
+import ServiceModal from '../components/ui/ServiceModal';
 
+type Service = {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  image: string;
+};
 
 const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -24,7 +32,7 @@ const Services = () => {
     return () => observer.disconnect();
   }, []);
 
-  const services = [
+  const services: Service[] = [
     {
       icon: Building2,
       title: 'Construction de bâtiment',
@@ -112,7 +120,8 @@ const Services = () => {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`group relative bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 ${
+              onClick={() => setSelectedService(service)}
+              className={`group relative bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 cursor-pointer ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ transitionDelay: `${200 + index * 100}ms` }}
@@ -140,16 +149,6 @@ const Services = () => {
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">
                   {service.description}
                 </p>
-                <a
-                  href="#contact"
-                  className="inline-flex items-center text-[#fbab39] text-sm font-semibold group/link"
-                >
-                  En savoir plus
-                  <ArrowRight
-                    size={16}
-                    className="ml-2 transition-transform group-hover/link:translate-x-1"
-                  />
-                </a>
               </div>
 
               {/* Hover Border Effect */}
@@ -198,6 +197,11 @@ const Services = () => {
           </div>
         </div>
       </div>
+      <ServiceModal 
+        isOpen={!!selectedService}
+        onClose={() => setSelectedService(null)}
+        service={selectedService}
+      />
     </section>
   );
 };
