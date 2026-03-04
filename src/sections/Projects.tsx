@@ -90,6 +90,7 @@ const Projects = () => {
       location: 'Agadir',
       year: '2023',
       image: getImagePath('epoxy.jpeg', 5),
+      gallery: ['./images/epoxy1.jpeg', './images/epoxy2.jpg', './images/epoxy3.jpg'],
       description: 'Application de résine époxy alimentaire sur 2000 m².',
     },
     {
@@ -99,6 +100,7 @@ const Projects = () => {
       location: 'Marrakech',
       year: '2022',
       image: getImagePath('epoxy1.jpeg', 6),
+      gallery: ['./images/epoxy.jpeg', './images/epoxy2.jpg', './images/epoxy3.jpg'],
       description: 'Revêtement de sol en résine pour un parking de 300 places.',
     },
     {
@@ -108,6 +110,7 @@ const Projects = () => {
       location: 'Casablanca',
       year: '2023',
       image: getImagePath('Dallage.jpeg', 7),
+      gallery: ['./images/Dallage1.jpeg', './images/Dallage3.jpg', './images/Dallage4.jpg', './images/Dallage5.jpg'],
       description: 'Réalisation d\'un dallage industriel de 10 000 m² avec finale héropolitaine.',
     },
     {
@@ -117,6 +120,7 @@ const Projects = () => {
       location: 'Rabat',
       year: '2022',
       image: getImagePath('Dallage1.jpeg', 8),
+      gallery: ['./images/Dallage.jpeg', './images/Dallage3.jpg', './images/Dallage4.jpg', './images/Dallage5.jpg'],
       description: 'Coulage et lissage d\'un dallage de 5000 m² pour un centre commercial.',
     },
     {
@@ -126,6 +130,7 @@ const Projects = () => {
       location: 'Casablanca',
       year: '2023',
       image: getImagePath('Peinture.jpeg', 9),
+      gallery: ['./images/Peinture1.jpeg', './images/Peinture2.jpeg', './images/Peinture3.jpeg'],
       description: 'Peinture extérieure et ravalement de façade d\'un immeuble de 10 étages.',
     },
     {
@@ -135,6 +140,7 @@ const Projects = () => {
       location: 'Marrakech',
       year: '2022',
       image: getImagePath('Peinture1.jpeg', 10),
+      gallery: ['./images/Peinture.jpeg', './images/Peinture2.jpeg', './images/Peinture3.jpeg'],
       description: 'Peinture et finales décoratives pour une villa de luxe.',
     },
     {
@@ -144,6 +150,7 @@ const Projects = () => {
       location: 'Tanger',
       year: '2023',
       image: getImagePath('Étanchéité.jpeg', 11),
+      gallery: ['./images/Étanchéité1.jpg'],
       description: 'Mise en place d\'un système d\'étanchéité multicouche sur 1000 m².',
     },
     {
@@ -153,6 +160,7 @@ const Projects = () => {
       location: 'Agadir',
       year: '2022',
       image: getImagePath('Étanchéité1.jpg', 12),
+      gallery: ['./images/Étanchéité.jpeg'],
       description: 'Application d\'un revêtement d\'imperméabilisation pour un bassin de 500 m³.',
     },
     {
@@ -162,6 +170,7 @@ const Projects = () => {
       location: 'Casablanca',
       year: '2023',
       image: getImagePath('Sablage.jpeg', 13),
+      gallery: ['./images/Sablage1.jpeg', './images/Sablage2.jpeg', './images/Sablage3.jpg'],
       description: 'Décapage par sablage de pièces métalliques avant peinture.',
     },
     {
@@ -171,6 +180,7 @@ const Projects = () => {
       location: 'Rabat',
       year: '2022',
       image: getImagePath('Sablage1.jpeg', 14),
+      gallery: ['./images/Sablage.jpeg', './images/Sablage2.jpeg', './images/Sablage3.jpg'],
       description: 'Sablage et nettoyage d\'une façade en pierre de taille.',
     },
   ];

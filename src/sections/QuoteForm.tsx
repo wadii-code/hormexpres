@@ -1,206 +1,371 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import {  
+  User, 
+  Mail, 
+  Phone, 
+  MessageSquare, 
+  CheckCircle2, 
+  Shield, 
+  Clock,
+  ArrowRight,
+  Sparkles
+} from 'lucide-react';
 
 const QuoteForm = () => {
-  const [fullName, setFullName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    const savedFormData = sessionStorage.getItem('quoteFormData');
+    if (savedFormData) {
+      setFormData(JSON.parse(savedFormData));
+    }
+  }, []);
+
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => {
+      const newFormData = { ...prev, [field]: value };
+      sessionStorage.setItem('quoteFormData', JSON.stringify(newFormData));
+      return newFormData;
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const whatsAppNumber = "212777461177";
+    setIsSubmitting(true);
+    
+    // Simulate brief loading for better UX
+    await new Promise(resolve => setTimeout(resolve, 800));
+    
+    const whatsAppNumber = "212661259104";
     const formattedMessage = `
-*Demande de Devis*
+*Demande de Devis - ${formData.fullName}*
 
-*Full Name:* ${fullName}
-*Email:* ${email}
-*Phone Number:* ${phone}
+*Nom complet:* ${formData.fullName}
+*Email:* ${formData.email}
+*Téléphone:* ${formData.phone}
+
 *Message:*
-${message}
+${formData.message}
     `;
 
     const encodedMessage = encodeURIComponent(formattedMessage.trim());
     const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
-
+    
     window.open(whatsappUrl, '_blank');
+    setIsSubmitting(false);
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      message: ''
+    });
+    sessionStorage.removeItem('quoteFormData');
   };
 
+  const inputClasses = "h-14 bg-gray-50/50 border-gray-200 focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 rounded-xl text-base transition-all duration-300 placeholder:text-gray-400";
+  
+  const labelClasses = "text-gray-700 font-semibold text-sm uppercase tracking-wide flex items-center gap-2 mb-2";
+
   return (
-    <section id="devis" className="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div className="container mx-auto px-4">
+    <section id="QuoteForm" className="py-24 bg-gradient-to-br from-slate-50 via-gray-50 to-slate-100 relative overflow-hidden">
+      {/* Background Decorations */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-amber-400/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-amber-200/5 to-blue-200/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div 
-          className="max-w-2xl mx-auto text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          className="max-w-3xl mx-auto text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <div className="inline-block mb-4">
-            <span className="bg-yellow-500/10 text-yellow-600 text-sm font-semibold px-4 py-2 rounded-full">
-              Devis Gratuit
+          <motion.div 
+            className="inline-flex items-center gap-2 mb-6"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-lg shadow-amber-500/25 flex items-center gap-2">
+              <Sparkles className="w-4 h-4" />
+              Devis Gratuit & Sans Engagement
             </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Demander un <span className="text-yellow-500">Devis</span>
+          </motion.div>
+          
+          <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+            Démarrons votre projet{" "}
+            <span className="bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-transparent">
+              ensemble
+            </span>
           </h2>
-          <p className="text-lg text-gray-600">
-            Prêt à démarrer votre projet ? Remplissez le formulaire ci-dessous 
-            et nous vous contacterons dans les plus brefs délais.
+          
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            Racontez-nous votre vision. Notre équipe d'experts vous répondra 
+            avec une proposition sur mesure sous 24 heures.
           </p>
         </motion.div>
 
-        {/* Form */}
+        {/* Form Container */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="max-w-2xl mx-auto"
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="max-w-4xl mx-auto"
         >
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-            {/* Form Header */}
-            <div className="bg-gray-900 px-8 py-6">
-              <h3 className="text-2xl font-bold text-white flex items-center gap-2">
-                <svg className="w-6 h-6 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Nouvelle demande
-              </h3>
-              <p className="text-gray-400 text-sm mt-1">
-                Tous les champs sont obligatoires
-              </p>
+          <div className="bg-white rounded-3xl shadow-2xl shadow-gray-900/5 overflow-hidden border border-gray-100">
+            {/* Progress Header */}
+            <div className="bg-gradient-to-r from-gray-900 to-gray-800 px-8 py-8 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <div className="relative z-10 flex items-center justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold text-white flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-amber-500 flex items-center justify-center">
+                      <MessageSquare className="w-5 h-5 text-gray-900" />
+                    </div>
+                    Nouvelle demande de devis
+                  </h3>
+                  <p className="text-gray-400 mt-2 text-sm">
+                    Étape 1 sur 1 • Remplissage du formulaire
+                  </p>
+                </div>
+                <div className="hidden md:flex items-center gap-2 text-amber-400">
+                  <Clock className="w-5 h-5" />
+                  <span className="text-sm font-medium">2 min</span>
+                </div>
+              </div>
             </div>
 
-            {/* Form Fields */}
-            <form onSubmit={handleSubmit} className="p-8">
-              <div className="space-y-6">
+            {/* Form Content */}
+            <form onSubmit={handleSubmit} className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8">
                 {/* Full Name */}
-                <div className="space-y-2">
-                  <Label htmlFor="fullName" className="text-gray-700 font-medium flex items-center gap-2">
-                    <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
+                <motion.div 
+                  className="space-y-2"
+                  animate={{ scale: focusedField === 'fullName' ? 1.02 : 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Label htmlFor="fullName" className={labelClasses}>
+                    <User className="w-4 h-4 text-amber-500" />
                     Nom complet
                   </Label>
-                  <Input
-                    id="fullName"
-                    type="text"
-                    placeholder="Jean Dupont"
-                    value={fullName}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFullName(e.target.value)}
-                    required
-                    className="h-12 border-gray-200 focus:border-yellow-500 focus:ring-yellow-500 rounded-lg text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <Input
+                      id="fullName"
+                      type="text"
+                      placeholder="Jean Dupont"
+                      value={formData.fullName}
+                      onChange={(e) => handleChange('fullName', e.target.value)}
+                      onFocus={() => setFocusedField('fullName')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      className={inputClasses}
+                    />
+                    <AnimatePresence>
+                      {formData.fullName && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2"
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
 
                 {/* Email */}
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-700 font-medium flex items-center gap-2">
-                    <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    Email
+                <motion.div 
+                  className="space-y-2"
+                  animate={{ scale: focusedField === 'email' ? 1.02 : 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Label htmlFor="email" className={labelClasses}>
+                    <Mail className="w-4 h-4 text-amber-500" />
+                    Adresse email
                   </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="jean.dupont@email.com"
-                    value={email}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-                    required
-                    className="h-12 border-gray-200 focus:border-yellow-500 focus:ring-yellow-500 rounded-lg text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="jean.dupont@email.com"
+                      value={formData.email}
+                      onChange={(e) => handleChange('email', e.target.value)}
+                      onFocus={() => setFocusedField('email')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      className={inputClasses}
+                    />
+                    <AnimatePresence>
+                      {formData.email && formData.email.includes('@') && (
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          exit={{ opacity: 0, scale: 0 }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2"
+                        >
+                          <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </motion.div>
 
-                {/* Phone */}
-                <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-gray-700 font-medium flex items-center gap-2">
-                    <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    Téléphone
+                {/* Phone - Full Width on Mobile, Half on Desktop */}
+                <motion.div 
+                  className="space-y-2 md:col-span-2"
+                  animate={{ scale: focusedField === 'phone' ? 1.02 : 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Label htmlFor="phone" className={labelClasses}>
+                    <Phone className="w-4 h-4 text-amber-500" />
+                    Numéro de téléphone
                   </Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="06 12 34 56 78"
-                    value={phone}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPhone(e.target.value)}
-                    required
-                    className="h-12 border-gray-200 focus:border-yellow-500 focus:ring-yellow-500 rounded-lg text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 border-r border-gray-300 pr-3">
+                      <span className="text-gray-500 font-medium">+212</span>
+                    </div>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="0606060606"
+                      value={formData.phone}
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      onFocus={() => setFocusedField('phone')}
+                      onBlur={() => setFocusedField(null)}
+                      required
+                      className={`${inputClasses} pl-20`}
+                    />
+                  </div>
+                </motion.div>
 
-                {/* Message */}
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-700 font-medium flex items-center gap-2">
-                    <svg className="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                    </svg>
-                    Message
+                {/* Message - Full Width */}
+                <motion.div 
+                  className="space-y-2 md:col-span-2"
+                  animate={{ scale: focusedField === 'message' ? 1.02 : 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Label htmlFor="message" className={labelClasses}>
+                    <MessageSquare className="w-4 h-4 text-amber-500" />
+                    Décrivez votre projet
                   </Label>
                   <Textarea
                     id="message"
-                    placeholder="Décrivez votre projet ou votre question (surface, matériaux souhaités, budget approximatif...)"
-                    value={message}
-                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage(e.target.value)}
+                    placeholder="Parlez-nous de vos besoins : type de projet, surface concernée, matériaux préférés, délais souhaités, budget approximatif..."
+                    value={formData.message}
+                    onChange={(e) => handleChange('message', e.target.value)}
+                    onFocus={() => setFocusedField('message')}
+                    onBlur={() => setFocusedField(null)}
                     required
-                    className="min-h-[140px] border-gray-200 focus:border-yellow-500 focus:ring-yellow-500 rounded-lg text-base resize-none"
+                    className="min-h-[160px] bg-gray-50/50 border-gray-200 focus:bg-white focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 rounded-xl text-base transition-all duration-300 resize-none placeholder:text-gray-400 leading-relaxed"
                   />
-                </div>
+                  <div className="flex justify-between text-xs text-gray-400 mt-2">
+                    <span>Plus de détails = devis plus précis</span>
+                    <span>{formData.message.length} caractères</span>
+                  </div>
+                </motion.div>
+              </div>
 
-                {/* Submit Button */}
-                <div className="pt-4">
-                  <Button 
-                    type="submit" 
-                    size="lg"
-                    className="w-full bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold h-14 text-lg rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-xl shadow-lg"
-                  >
-                    <span className="flex items-center justify-center gap-2">
-                      Envoyer ma demande
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
-                    </span>
-                  </Button>
-                  
-                  {/* Security Note */}
-                  <p className="text-xs text-gray-500 text-center mt-4 flex items-center justify-center gap-1">
-                    <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                    Vos données sont confidentielles
-                  </p>
+              {/* Submit Section */}
+              <div className="mt-10 pt-8 border-t border-gray-100">
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold h-16 text-lg rounded-xl transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/25 hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-not-allowed group relative overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-3">
+                    {isSubmitting ? (
+                      <>
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        >
+                          <Sparkles className="w-5 h-5" />
+                        </motion.div>
+                        Envoi en cours...
+                      </>
+                    ) : (
+                      <>
+                        Envoyer ma demande
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+
+                {/* Trust Indicators */}
+                <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-gray-500">
+                  <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-full">
+                    <Shield className="w-4 h-4 text-green-600" />
+                    <span>Données 100% sécurisées</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-gray-50 px-4 py-2 rounded-full">
+                    <Clock className="w-4 h-4 text-amber-600" />
+                    <span>Réponse garantie sous 24h</span>
+                  </div>
                 </div>
               </div>
             </form>
           </div>
 
-          {/* Trust Badge */}
+          {/* Trust Badges */}
           <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="flex justify-center mt-6"
+            className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4"
           >
-            <div className="inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full shadow-sm">
-              <div className="flex -space-x-2">
-                <div className="w-6 h-6 rounded-full bg-blue-500 border-2 border-white" />
-                <div className="w-6 h-6 rounded-full bg-green-500 border-2 border-white" />
-                <div className="w-6 h-6 rounded-full bg-yellow-500 border-2 border-white" />
-              </div>
-              <span className="text-sm text-gray-600">
-                <span className="font-semibold text-gray-900">Réponse sous 24h</span> en moyenne
-              </span>
-            </div>
+            {[
+              { 
+                icon: CheckCircle2, 
+                title: "Devis personnalisé", 
+                desc: "Adapté à vos besoins spécifiques" 
+              },
+              { 
+                icon: Shield, 
+                title: "Sans engagement", 
+                desc: "Aucune obligation d'achat" 
+              },
+              { 
+                icon: Clock, 
+                title: "Service rapide", 
+                desc: "Intervention sous 48h si urgence" 
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -4 }}
+                className="bg-white/80 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center mx-auto mb-3">
+                  <item.icon className="w-6 h-6 text-amber-600" />
+                </div>
+                <h4 className="font-bold text-gray-900 mb-1">{item.title}</h4>
+                <p className="text-sm text-gray-600">{item.desc}</p>
+              </motion.div>
+            ))}
           </motion.div>
         </motion.div>
       </div>

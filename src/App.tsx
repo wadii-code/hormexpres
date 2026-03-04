@@ -25,6 +25,23 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Implement scroll position preservation on page refresh
+  useEffect(() => {
+    const savedScrollY = sessionStorage.getItem('scrollY');
+    if (savedScrollY) {
+      window.scrollTo(0, parseInt(savedScrollY, 10));
+    }
+
+    const handleBeforeUnload = () => {
+      sessionStorage.setItem('scrollY', String(window.scrollY));
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   // Scroll reveal animation
   useEffect(() => {
     const observerOptions = {

@@ -84,7 +84,7 @@ const ProjectModal = ({ isOpen, onClose, images, projectName }: ProjectModalProp
               className="max-w-[90vw] max-h-[80vh] rounded-lg shadow-2xl inline-block"
             />
             <p className="text-white mt-4 text-lg">
-              Description de l'image.
+              image
             </p>
             <button
               onClick={() => setSelectedImage(null)}

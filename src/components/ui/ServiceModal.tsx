@@ -96,9 +96,15 @@ const ServiceModal = ({ isOpen, onClose, service }: ServiceModalProps) => {
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black/90 flex items-center justify-center z-[110] p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedImage(null);
+          }}
         >
-          <div className="relative text-center">
+          <div 
+            className="relative text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
             <img
               src={selectedImage.src}
               alt="Enlarged view"

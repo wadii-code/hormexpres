@@ -50,7 +50,7 @@ const Footer = () => {
             </a>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               Votre partenaire de confiance pour tous vos projets de construction et génie civil. 
-              Qualité, rapidité et prix compétitifs depuis plus de 25 ans.
+              Qualité, rapidité et prix compétitifs depuis plus de 3 ans.
             </p>
            
           </div>

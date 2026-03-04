@@ -31,7 +31,7 @@ const Header = ({ scrollY }: HeaderProps) => {
       ],
     },
     { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Contact', href: '#QuoteForm' },
   ];
 
   const scrollToSection = (href: string) => {
@@ -143,10 +143,10 @@ const Header = ({ scrollY }: HeaderProps) => {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <a
-              href="#contact"
+              href="#QuoteForm"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('#contact');
+                scrollToSection('#QuoteForm');
               }}
               className="btn-primary"
             >
@@ -218,10 +218,10 @@ const Header = ({ scrollY }: HeaderProps) => {
           </nav>
           <div className="mt-auto pb-8">
             <a
-              href="#contact"
+              href="#QuoteForm"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('#contact');
+                scrollToSection('#QuoteForm');
               }}
               className="btn-primary w-full"
             >

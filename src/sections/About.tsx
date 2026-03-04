@@ -101,7 +101,7 @@ const About = () => {
             </h2>
             <p className="text-gray-600 text-lg leading-relaxed mb-6">
               Hormexpres est une entreprise de construction et de génie civil basée à Casablanca. 
-              Avec plus de 25 ans d'expérience, nous avons établi notre réputation comme leader 
+              Avec plus de 3 ans d'expérience, nous avons établi notre réputation comme leader 
               dans la région, offrant des services de construction de haute qualité.
             </p>
             <p className="text-gray-600 leading-relaxed mb-8">
