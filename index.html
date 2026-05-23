@@ -1,12 +1,143 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/newlogo.jpeg" />
-    <title>HORMEXPRES - Construction Company</title>
+
+    <!-- Primary Meta Tags (fallback before React hydrates) -->
+    <title>HORMEXPRES GROUP | Entreprise de Construction &amp; Génie Civil au Maroc</title>
+    <meta name="title" content="HORMEXPRES GROUP | Entreprise de Construction &amp; Génie Civil au Maroc" />
+    <meta name="description" content="HORMEXPRES GROUP, votre entreprise de construction et génie civil à Casablanca, Maroc. Construction bâtiment, rénovation, béton armé, étanchéité et travaux BTP. Devis gratuit 24h/24." />
+    <meta name="keywords" content="construction maroc, entreprise btp casablanca, génie civil maroc, constructeur bâtiment casablanca, rénovation maison maroc, entrepreneur construction maroc, travaux btp maroc, hormexpres" />
+    <meta name="author" content="HORMEXPRES GROUP" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://www.hormexpres.ma/" />
+
+    <!-- Language -->
+    <meta httpEquiv="Content-Language" content="fr" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="/images/newlogo.jpeg" />
+    <link rel="apple-touch-icon" href="/images/newlogo.jpeg" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#fbab39" />
+    <meta name="msapplication-TileColor" content="#212529" />
+
+    <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.hormexpres.ma/" />
+    <meta property="og:title" content="HORMEXPRES GROUP | Entreprise de Construction &amp; Génie Civil au Maroc" />
+    <meta property="og:description" content="HORMEXPRES GROUP, votre entreprise de construction et génie civil à Casablanca, Maroc. Construction bâtiment, rénovation, béton armé, étanchéité. Devis gratuit 24h/24." />
+    <meta property="og:image" content="https://www.hormexpres.ma/images/newlogo.jpeg" />
+    <meta property="og:image:alt" content="HORMEXPRES GROUP - Entreprise de Construction au Maroc" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="HORMEXPRES GROUP" />
+    <meta property="og:locale" content="fr_MA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="HORMEXPRES GROUP | Entreprise de Construction au Maroc" />
+    <meta name="twitter:description" content="Construction bâtiment, génie civil, rénovation, béton armé, étanchéité à Casablanca, Maroc. Devis gratuit 24/7." />
+    <meta name="twitter:image" content="https://www.hormexpres.ma/images/newlogo.jpeg" />
+
+    <!-- Geo / Local SEO -->
+    <meta name="geo.region" content="MA-01" />
+    <meta name="geo.placename" content="Casablanca, Maroc" />
+    <meta name="geo.position" content="33.5789;-7.6069" />
+    <meta name="ICBM" content="33.5789, -7.6069" />
+
+    <!-- Google Fonts: non-blocking load (preconnect → preload → deferred stylesheet) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap" />
+    </noscript>
+
+    <!-- DNS prefetch for external services -->
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+
+    <!-- Structured Data: Organization + LocalBusiness + WebSite (static fallback) -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.hormexpres.ma/#organization",
+        "name": "HORMEXPRES GROUP",
+        "url": "https://www.hormexpres.ma",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.hormexpres.ma/images/newlogo.jpeg"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+212661259104",
+          "contactType": "customer service",
+          "areaServed": "MA",
+          "availableLanguage": ["French", "Arabic"]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "77 Mohamed Smiha étage N°10 apt N°57",
+          "addressLocality": "Casablanca",
+          "addressRegion": "Grand Casablanca",
+          "postalCode": "20000",
+          "addressCountry": "MA"
+        },
+        "email": "hormexpresgroupe@gmail.com"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "GeneralContractor"],
+        "@id": "https://www.hormexpres.ma/#business",
+        "name": "HORMEXPRES GROUP",
+        "url": "https://www.hormexpres.ma",
+        "telephone": "+212661259104",
+        "email": "hormexpresgroupe@gmail.com",
+        "image": "https://www.hormexpres.ma/images/newlogo.jpeg",
+        "priceRange": "$$",
+        "description": "Entreprise de construction et génie civil à Casablanca, Maroc. Construction bâtiment, rénovation, béton armé, étanchéité et travaux BTP.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "77 Mohamed Smiha étage N°10 apt N°57",
+          "addressLocality": "Casablanca",
+          "addressRegion": "Grand Casablanca",
+          "postalCode": "20000",
+          "addressCountry": "MA"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.5789,
+          "longitude": -7.6069
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        },
+        "areaServed": { "@type": "Country", "name": "Morocco" }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://www.hormexpres.ma/#website",
+        "name": "HORMEXPRES GROUP",
+        "url": "https://www.hormexpres.ma",
+        "inLanguage": "fr-MA",
+        "description": "Entreprise de construction et génie civil au Maroc"
+      }
+    ]
+    </script>
   </head>
   <body>
+    <!-- Skip navigation: keyboard/screen-reader accessibility (Lighthouse Accessibility requirement) -->
+    <a href="#main-content" class="skip-nav">Aller au contenu principal</a>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

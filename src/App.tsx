@@ -10,6 +10,14 @@ import Suppliers from './sections/Suppliers';
 import Contact from './sections/Contact';
 import QuoteForm from './sections/QuoteForm';
 import Footer from './sections/Footer';
+import SEO from './components/SEO';
+import {
+  getOrganizationSchema,
+  getLocalBusinessSchema,
+  getWebsiteSchema,
+  getHomepageFAQSchema,
+  PAGE_SEO,
+} from './lib/seo';
 
 // Page Components
 import PageDemolitionImmobiles from './sections/PageDemolitionImmobiles';
@@ -27,16 +35,19 @@ import PageReparationSols from './sections/PageReparationSols';
 import PageConstructionBatiment from './sections/PageConstructionBatiment';
 import PageCarriereChevaux from './sections/PageCarriereChevaux';
 
+const homepageSchemas = [
+  getOrganizationSchema(),
+  getLocalBusinessSchema(),
+  getWebsiteSchema(),
+  getHomepageFAQSchema(),
+];
 
 function App() {
   const [scrollY, setScrollY] = useState(0);
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -46,19 +57,30 @@ function App() {
       <ScrollToTop />
       <Header scrollY={scrollY} />
       <Routes>
-        <Route path="/" element={
-          <main>
-            <Hero />
-            <About />
-            <Services />
-            <Projects />
-            <Testimonials />
-            <Suppliers />
-            <Contact />
-            <QuoteForm />
-          </main>
-        } />
-        {/* Service Pages */}
+        <Route
+          path="/"
+          element={
+            <main id="main-content">
+              {/* Homepage SEO: 4 JSON-LD schemas injected into <head> */}
+              <SEO
+                title={PAGE_SEO['/'].title}
+                description={PAGE_SEO['/'].description}
+                keywords={PAGE_SEO['/'].keywords}
+                canonicalPath="/"
+                jsonLd={homepageSchemas}
+              />
+              <Hero />
+              <About />
+              <Services />
+              <Projects />
+              <Testimonials />
+              <Suppliers />
+              <Contact />
+              <QuoteForm />
+            </main>
+          }
+        />
+        {/* Service Pages — each owns its own SEO via their component */}
         <Route path="/construction-genie-civil" element={<PageConstructionBatiment />} />
         <Route path="/demolition-immobiles" element={<PageDemolitionImmobiles />} />
         <Route path="/beton-arme" element={<PageBetonArme />} />

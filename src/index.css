@@ -1,4 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&family=Teko:wght@300;400;500;600;700&display=swap');
+/* Google Fonts loaded non-blocking via <link> tags in index.html */
+
+/* Skip navigation link — hidden until focused by keyboard */
+.skip-nav {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.5rem;
+  background: #fbab39;
+  color: #212529;
+  font-weight: 700;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-nav:focus {
+  top: 0;
+}
 
 @tailwind base;
 @tailwind components;

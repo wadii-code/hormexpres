@@ -1,4 +1,6 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 const reparationImages = [
   { src: './images/sablage2.png', alt: 'Réparation fissures 1' },
@@ -9,8 +11,23 @@ const reparationImages = [
 ];
 
 const PageReparationFissuresSablage = () => {
+  const pageSeo = PAGE_SEO['/reparation-fissures-sablage'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/reparation-fissures-sablage"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/reparation-fissures-sablage'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Réparation Fissures & Sablage', path: '/reparation-fissures-sablage' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/sablage.png"
       bgColor="#000"
@@ -53,7 +70,8 @@ const PageReparationFissuresSablage = () => {
               <div key={index} className="relative group overflow-hidden rounded-lg">
                 <img
                   src={img.src}
-                  alt={img.alt}
+                  alt={(img as any).alt ?? (img as any).description ?? 'Réalisation HORMEXPRES GROUP'}
+                  loading="lazy"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -74,6 +92,7 @@ const PageReparationFissuresSablage = () => {
         </div>
       }
     />
+    </>
   );
 };
 

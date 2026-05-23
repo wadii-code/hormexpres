@@ -76,3 +76,5 @@ web_modules
 # Duplicates
 * (2).*
 * (2)
+
+node_modules

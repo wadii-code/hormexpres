@@ -1,4 +1,6 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 const constructionImages = [
     { src: './images/Charpente4.jpg', alt: 'Construction bâtiment 2' },
@@ -34,8 +36,23 @@ const constructionImages = [
   ];
 
 const PageConstructionBatiment = () => {
+  const pageSeo = PAGE_SEO['/construction-genie-civil'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/construction-genie-civil"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/construction-genie-civil'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Construction Bâtiment & Génie Civil', path: '/construction-genie-civil' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/dal.jpeg"
       bgColor="#000"
@@ -83,7 +100,8 @@ const PageConstructionBatiment = () => {
               <div key={index} className="relative group overflow-hidden rounded-lg">
                 <img
                   src={img.src}
-                  alt={img.alt}
+                  alt={(img as any).alt ?? (img as any).description ?? 'Réalisation HORMEXPRES GROUP'}
+                  loading="lazy"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -104,6 +122,7 @@ const PageConstructionBatiment = () => {
         </div>
       }
     />
+    </>
   );
 };
 

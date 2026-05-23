@@ -1,4 +1,6 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 const dallageImages = [
   { src: './images/Dallage3.jpg', alt: 'Dallage industriel 3' },
@@ -15,8 +17,23 @@ const dallageImages = [
 ];
 
 const PageRevetementDallageIndustriel = () => {
+  const pageSeo = PAGE_SEO['/revetement-dallage-industriel'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/revetement-dallage-industriel"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/revetement-dallage-industriel'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Revêtement & Dallage Industriel', path: '/revetement-dallage-industriel' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/dal4.png"
       bgColor="#000"
@@ -59,7 +76,8 @@ const PageRevetementDallageIndustriel = () => {
               <div key={index} className="relative group overflow-hidden rounded-lg">
                 <img
                   src={img.src}
-                  alt={img.alt}
+                  alt={(img as any).alt ?? (img as any).description ?? 'Réalisation HORMEXPRES GROUP'}
+                  loading="lazy"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -80,6 +98,7 @@ const PageRevetementDallageIndustriel = () => {
         </div>
       }
     />
+    </>
   );
 };
 

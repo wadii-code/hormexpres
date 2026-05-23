@@ -29,12 +29,13 @@ const Hero = () => {
     loop
     muted
     playsInline
-    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-&lsqb;2s&rsqb ${
+    preload="metadata"
+    aria-hidden="true"
+    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] ${
       isLoaded ? 'scale-100' : 'scale-110'
     }`}
   >
     <source src="videos/vid3.mp4" type="video/mp4" />
-    
   </video>
   {/* Dark Overlay */}
   <div className="absolute inset-0 bg-gradient-to-r from-[#212529]/90 via-[#212529]/70 to-[#212529]/50" />  

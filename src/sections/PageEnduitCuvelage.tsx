@@ -1,10 +1,27 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 
 
 const PageEnduitCuvelage = () => {
+  const pageSeo = PAGE_SEO['/enduit-cuvelage'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/enduit-cuvelage"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/enduit-cuvelage'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Enduit de Cuvelage', path: '/enduit-cuvelage' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/cuvelage.jpg"
       bgColor="#000"
@@ -52,6 +69,7 @@ const PageEnduitCuvelage = () => {
         </div>
       }
     />
+    </>
   );
 };
 

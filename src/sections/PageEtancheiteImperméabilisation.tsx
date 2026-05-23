@@ -1,4 +1,6 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 const etancheiteImages = [
   { src: './images/etancheite.jpeg', alt: 'Étanchéité 1' },
@@ -8,8 +10,23 @@ const etancheiteImages = [
 ];
 
 const PageEtancheiteImperméabilisation = () => {
+  const pageSeo = PAGE_SEO['/etancheite-imperméabilisation'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/etancheite-imperméabilisation"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/etancheite-imperméabilisation'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Étanchéité & Imperméabilisation', path: '/etancheite-imperméabilisation' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/etancheite.jpg"
       bgColor="#000"
@@ -52,7 +69,8 @@ const PageEtancheiteImperméabilisation = () => {
               <div key={index} className="relative group overflow-hidden rounded-lg">
                 <img
                   src={img.src}
-                  alt={img.alt}
+                  alt={(img as any).alt ?? (img as any).description ?? 'Réalisation HORMEXPRES GROUP'}
+                  loading="lazy"
                   className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -73,6 +91,7 @@ const PageEtancheiteImperméabilisation = () => {
         </div>
       }
     />
+    </>
   );
 };
 

@@ -1,9 +1,26 @@
 import ScrollExpandPage from '../components/ScrollExpandPage';
+import SEO from '../components/SEO';
+import { PAGE_SEO, getServiceSchema, getBreadcrumbSchema } from '../lib/seo';
 
 
 const PageSterilisationAerienne = () => {
+  const pageSeo = PAGE_SEO['/sterilisation-aerienne'];
   return (
-    <ScrollExpandPage
+    <>
+      <SEO
+        title={pageSeo.title}
+        description={pageSeo.description}
+        keywords={pageSeo.keywords}
+        canonicalPath="/sterilisation-aerienne"
+        jsonLd={[
+          getServiceSchema(pageSeo.title, pageSeo.description, '/sterilisation-aerienne'),
+          getBreadcrumbSchema([
+            { name: 'Accueil', path: '/' },
+            { name: 'Stérilisation par Voie Aérienne', path: '/sterilisation-aerienne' },
+          ]),
+        ]}
+      />
+      <ScrollExpandPage
       mediaType="image"
       mediaSrc="./images/neww.png"
       bgColor="#000"
@@ -51,6 +68,7 @@ const PageSterilisationAerienne = () => {
         </div>
       }
     />
+    </>
   );
 };
 

@@ -219,8 +219,10 @@ const ScrollExpandPage = ({
                 ) : (
                   <img
                     src={mediaSrc}
-                    alt={title || 'Media content'}
+                    alt={title || 'Service HORMEXPRES GROUP'}
                     className="w-full h-full object-cover"
+                    fetchPriority="high"
+                    loading="eager"
                   />
                 )}
 
@@ -251,20 +253,21 @@ const ScrollExpandPage = ({
                 </div>
               </div>
 
-              <div className="flex items-center justify-center text-center gap-4 w-full relative z-10 transition-none flex-col">
-                <motion.h2
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-white transition-none drop-shadow-lg"
+              {/* Single H1 for correct heading hierarchy — spans achieve the split animation */}
+              <h1 className="flex items-center justify-center text-center gap-4 w-full relative z-10 transition-none flex-col">
+                <motion.span
+                  className="block text-4xl md:text-5xl lg:text-6xl font-bold text-white transition-none drop-shadow-lg"
                   style={{ transform: `translateX(-${textTranslateX}vw)` }}
                 >
                   {firstWord}
-                </motion.h2>
-                <motion.h2
-                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white transition-none drop-shadow-lg"
+                </motion.span>
+                <motion.span
+                  className="block text-4xl md:text-5xl lg:text-6xl font-bold text-center text-white transition-none drop-shadow-lg"
                   style={{ transform: `translateX(${textTranslateX}vw)` }}
                 >
                   {restOfTitle}
-                </motion.h2>
-              </div>
+                </motion.span>
+              </h1>
 
               {/* Scroll Indicator */}
               <motion.div

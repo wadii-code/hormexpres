@@ -1,0 +1,16 @@
+# robots.txt - HORMEXPRES GROUP
+# https://www.hormexpres.ma
+
+User-agent: *
+Allow: /
+
+# Block access to sensitive/utility paths
+Disallow: /dist/
+Disallow: /node_modules/
+Disallow: /*.json$
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.hormexpres.ma/sitemap.xml

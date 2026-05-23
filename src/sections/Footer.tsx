@@ -1,5 +1,5 @@
 import { ArrowUp, Mail, Phone, MapPin } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -93,12 +93,13 @@ const Footer = () => {
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>
-                  <p
+                  <Link
+                    to={service.path}
                     className="text-gray-400 hover:text-[#fbab39] transition-colors text-sm flex items-center gap-2 group"
                   >
                     <span className="w-0 h-[1px] bg-[#fbab39] group-hover:w-4 transition-all" />
                     {service.name}
-                  </p>
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://www.hormexpres.ma/</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Service: Construction & Génie Civil -->
+  <url>
+    <loc>https://www.hormexpres.ma/construction-genie-civil</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Service: Démolition -->
+  <url>
+    <loc>https://www.hormexpres.ma/demolition-immobiles</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Béton Armé -->
+  <url>
+    <loc>https://www.hormexpres.ma/beton-arme</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Assainissement -->
+  <url>
+    <loc>https://www.hormexpres.ma/assainissement</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Étanchéité -->
+  <url>
+    <loc>https://www.hormexpres.ma/etancheite-imperméabilisation</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Enduit Cuvelage -->
+  <url>
+    <loc>https://www.hormexpres.ma/enduit-cuvelage</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Réparation Fissures -->
+  <url>
+    <loc>https://www.hormexpres.ma/reparation-fissures-sablage</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Résine Époxy -->
+  <url>
+    <loc>https://www.hormexpres.ma/resine-epoxy</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Stérilisation Aérienne -->
+  <url>
+    <loc>https://www.hormexpres.ma/sterilisation-aerienne</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Service: Réparation des Sols -->
+  <url>
+    <loc>https://www.hormexpres.ma/reparation-sols</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Dallage Industriel -->
+  <url>
+    <loc>https://www.hormexpres.ma/revetement-dallage-industriel</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Service: Génie Civil Carrière Chevaux -->
+  <url>
+    <loc>https://www.hormexpres.ma/genie-civil-carriere-chevaux</loc>
+    <lastmod>2025-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

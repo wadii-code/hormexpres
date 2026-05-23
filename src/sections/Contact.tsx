@@ -28,7 +28,7 @@ const Contact = () => {
       icon: MapPin,
       title: 'Adresse',
       content: '77 Mohamed Smiha étage N°10 apt N°57 Casablanca',
-      link: '#',
+      link: 'https://maps.google.com/?q=77+Mohamed+Smiha+Casablanca+Maroc',
     },
     {
       icon: Phone,
